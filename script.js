@@ -1,35 +1,63 @@
-var gameData = {
+gameData = {
   gold: 0,
   goldPerClick: 1,
-  goldPerClickCost: 10
-}
-
-function mineGold() {
-  gameData.gold += gameData.goldPerClick
-  document.getElementById("goldMined").innerHTML = gameData.gold + " Gold Mined"
-}
-
-function buyGoldPerClick() {
-  if (gameData.gold >= gameData.goldPerClickCost) {
-    gameData.gold -= gameData.goldPerClickCost
-    gameData.goldPerClick += 1
-    gameData.goldPerClickCost *= 2
-    document.getElementById("goldMined").innerHTML = gameData.gold + " Gold Mined"
-    document.getElementById("perClickUpgrade").innerHTML = "Upgrade Pickaxe (Currently Level " + gameData.goldPerClick + ") Cost: " + gameData.goldPerClickCost + " Gold"
+  autoMineAmount: 1,
+  enableAutoMine: false,
+  upgrades: {
+    pickaxeCost: 10,
+    pickaxeLevel: 1
   }
 }
 
-var mainGameLoop = window.setInterval(function() {
-  mineGold()
-}, 1000)
 
+
+function updateGoldText(){
+  document.getElementById('goldText').innerHTML = gameData.gold + " Gold";
+}
+
+function mineGold(){
+  gameData.gold += gameData.goldPerClick;
+  updateGoldText();
+}
+
+function buyPickaxeUpgrade(){
+  if (gameData.gold >= gameData.upgrades.pickaxeCost){
+  gameData.gold -= gameData.upgrades.pickaxeCost;
+  gameData.goldPerClick +=2;
+  gameData.upgrades.pickaxeCost *= 2;
+  gameData.upgrades.pickaxeLevel++;
+  updateGoldText();
+  document.getElementById('upgradePickaxeButton').innerHTML = 'Upgrade Pickaxe ' + '(level: ' + gameData.upgrades.pickaxeLevel + ')' + '<br>' + 'cost: ' + gameData.upgrades.pickaxeCost;
+  }
+}
+
+function enableAutoMine(){
+  if (gameData.gold >= 100){
+    gameData.enableAutoMine = true;
+    gameData.gold -= 100;
+    gameData.autoMineAmount = 1;
+    updateGoldText();
+    document.getElementById('buyAutoMine').style.display = "none";
+  }
+}
+
+function autoMine(){
+  gameData.gold += gameData.autoMineAmount;
+  updateGoldText();
+}
+
+var mainGameLoop = window.setInterval(function() {
+  if (gameData.enableAutoMine == true){
+    autoMine();
+  }
+}, 1000)
 
 
 var saveGameLoop = window.setInterval(function() {
   localStorage.setItem('goldMinerSave', JSON.stringify(gameData))
-}, 15000)
+}, 10000)
 
-var savegame = JSON.parse(localStorage.getItem("goldMinerSave"))
+var savegame = JSON.parse(localStorage.getItem("vincentIdleSave"))
 if (savegame !== null) {
   gameData = savegame
 }
