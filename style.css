@@ -1,7 +1,21 @@
 *{
+  background-color: #403f3f;
   margin: 0;
 }
 
-#gold{
-  float: right;
+#goldText{
+  margin-top: 20px;
+  position: absolute;
+  right: 60px;
+  color: #FFDF00;
+}
+
+.btn{
+  margin-top: 20px;
+}
+
+#buyAutoMine{
+  margin-top: 80px;
+  position: absolute;
+  right: 20px;
 }
