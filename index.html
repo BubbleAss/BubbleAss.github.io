@@ -12,24 +12,26 @@
   </head>
   <body>
     
-  <div class="container">
-  <div class="row">
-    <div class="col-sm">
-      <button class="btn btn-primary btn-lg" onclick="mineGold()">Mine Gold</button>
+    
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm">
+          <button id="upgradePickaxeButton" 
+           onclick="buyPickaxeUpgrade()" class="btn btn-light">
+            Upgrade Pickaxe (Level: 1) <br> (cost: 10)
+          </button>
+        </div>
+        <div class="col-sm">
+          <button onclick="mineGold()" class="btn btn-primary">Mine Gold</button>
+        </div>
+        <div ="col-sm"></div>
+        <h1 id="goldText">0 Gold</h1>
+        <button id="buyAutoMine" onclick="enableAutoMine()"
+         class="btn btn-light">
+            Buy Auto-miner x2000 <br> (cost: 100 Gold)
+         </button>
+      </div>
     </div>
-    <div class="col-sm">
-      <button class="btn btn-info" onclick="buyGoldPerClick()" id="perClickUpgrade">Upgrade Pickaxe (Currently Level 1) Cost: 10 Gold</button>
-    </div>
-    <div class="col-sm">
-        <h1 id="goldMined">0 Gold</h1>
-    </div>
-  </div>
-</div>
-    
-    
-    
-    
-    
     
     
     
@@ -37,6 +39,5 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="script.js"></script>
   </body>
 </html>
